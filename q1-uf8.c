@@ -109,6 +109,9 @@ int main(void)
         printf("The decoded value of 0x2F is %d \n", uf8_decode(0x2F));
         printf("The decoded value of 0x5A is %d \n", uf8_decode(0x5A));
         printf("The decoded value of 0xF0 is %d \n", uf8_decode(0xF0));
+        printf("The encoded value of 108 is %d \n", uf8_encode(108));
+        printf("The encoded value of 816 is %d \n", uf8_encode(816));
+        printf("The encoded value of 524272 is %d \n", uf8_encode(524272));
         return 0;
     }
     return 1;

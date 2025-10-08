@@ -106,6 +106,9 @@ int main(void)
 {
     if (test()) {
         printf("All tests passed.\n");
+        printf("The decoded value of 0x2F is %d \n", uf8_decode(0x2F));
+        printf("The decoded value of 0x5A is %d \n", uf8_decode(0x5A));
+        printf("The decoded value of 0xF0 is %d \n", uf8_decode(0xF0));
         return 0;
     }
     return 1;

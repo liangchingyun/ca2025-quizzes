@@ -599,6 +599,28 @@ int main(void)
     }
 
     printf("\n=== ALL TESTS PASSED ===\n");
+
+    printf("\nTesting format convertion...\n");
+    uint32_t f32_vals[] = {0x3FC00000, 0xC02C0000, 0x477FE000};
+    float val;
+    bf16_t result;
+
+    for (int i = 0; i < 3; i++) {
+        memcpy(&val, &f32_vals[i], sizeof(float)); 
+        result = f32_to_bf16(val);
+        printf("  The bf16 of 0x%08x is 0x%04x\n", f32_vals[i], result.bits);
+    }
+
+    uint16_t bf16_vals[] = {0x3FC0, 0xC030, 0x4780};
+
+    for (int i = 0; i < 3; i++) {
+        bf16_t bval = {.bits = bf16_vals[i]};
+        float res = bf16_to_f32(bval);
+        uint32_t bits;
+        memcpy(&bits, &res, sizeof(bits));
+        printf("  The f32 of 0x%04x is 0x%08x\n", bf16_vals[i], bits);
+    }
+
     return 0;
 }
 #endif /* BFLOAT16_NO_MAIN */

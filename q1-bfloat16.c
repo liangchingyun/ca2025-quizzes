@@ -621,6 +621,33 @@ int main(void)
         printf("  The f32 of 0x%04x is 0x%08x\n", bf16_vals[i], bits);
     }
 
+    printf("\nTesting calculation...\n");
+
+    int pairs[][2] = {{0, 1}, {1, 2}, {2, 0}};
+
+    printf("\nbf16_add result:\n");
+    for (int k = 0; k < 3; k++) {
+        int i = pairs[k][0];
+        int j = pairs[k][1];
+
+        bf16_t a = {.bits = bf16_vals[i]};
+        bf16_t b = {.bits = bf16_vals[j]};
+        bf16_t result = bf16_add(a, b);
+
+        printf(" 0x%04X\n", result.bits);
+    }
+
+    printf("\nbf16_sub result:\n");
+    for (int k = 0; k < 3; k++) {
+        int i = pairs[k][0];
+        int j = pairs[k][1];
+
+        bf16_t a = {.bits = bf16_vals[i]};
+        bf16_t b = {.bits = bf16_vals[j]};
+        bf16_t result = bf16_sub(a, b);
+
+        printf(" 0x%04X\n", result.bits);
+    }
     return 0;
 }
 #endif /* BFLOAT16_NO_MAIN */
